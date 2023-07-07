@@ -83,7 +83,7 @@ const Login = () => {
                                         <input value={email} onChange={e => emailupdate(e.target.value)} required />
                                     </div>
                                     <div className="password">
-                                        <label>Password:</label>
+                                        <label>Contraseña:</label>
                                         <input type="password" value={password} onChange={e => passwordupdate(e.target.value)} required></input>
                                     </div>
 

@@ -25,7 +25,7 @@ const Perfil = () => {
     }, [username]);
 
     return (
-        <div className="col">
+        <div className="">
             {usuario ? (
                 <div className="container text-center">
                     <div className="row">

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const Home = () => {
+const Footer = () => {
     useEffect(() => {
     }, []);
 
@@ -13,4 +13,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default Footer;

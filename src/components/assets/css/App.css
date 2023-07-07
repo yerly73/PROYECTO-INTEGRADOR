@@ -76,10 +76,12 @@ img {
   color: #FFFFFF;
   margin-bottom: 5px;
 }
-.formularioPublicacion{
+
+.formularioPublicacion {
   margin: 20px;
 }
-.tituloPub{
+
+.tituloPub {
   border-radius: 100px 97px 27px 96px;
   background-color: #5783bc;
   color: #FFFFFF;
@@ -88,31 +90,105 @@ img {
   height: 30px;
   text-align: center;
 }
-.tituloPub h6{
+
+.tituloPub h6 {
   text-decoration: underline;
   padding-top: 5px;
 }
-.newpub .btnsubmit{
+
+.newpub .btnsubmit {
   background-color: #081247;
   border: none;
 }
-.newpub .btnsubmit:hover{
+
+.newpub .btnsubmit:hover {
   background-color: #050c30;
   font-weight: bolder
 }
-.publicaciones_contenido .titulo_publicacion{
+
+.publicaciones_contenido .titulo_publicacion {
   text-align: left;
 
 }
-.publicaciones_contenido .date{
+
+.publicaciones_contenido {
+  margin: 20px;
+}
+
+.publicaciones_contenido .date {
   text-align: right;
   margin: 20px;
 }
-.publicaciones_contenido .date h6{
+
+.publicaciones_contenido .date h6 {
   font-size: 0.7rem;
   font-weight: bolder;
 
 }
+
+.titulo_publicacion {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  border-radius: 28px 28px 0px 0px;
+}
+
+.titulo_publicacion span {
+  color: #252440;
+  font-weight: bolder;
+}
+
+.lista_pub {
+  border-radius: 9px 9px 29px 29px;
+  padding: 20px;
+  margin: 20px;
+  margin-left: 0;
+  border-color: #050c30;
+  border: solid;
+}
+.publicaciones_contenido .links{
+  text-align: start;
+  color: black;
+}
+.titulo_p{
+  text-transform: uppercase;
+}
+.contenido_publicacion {
+  background-color: #e3e8e7;
+  padding: 10px;
+  text-align: start;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.imgevent {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.social {
+  text-align: end;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+img {
+  border-radius: 5px 5px 0 0;
+}
+
+.container {
+  padding: 2px 16px;
+}
+
 body {
   overflow-x: hidden;
   font-family: Sans-Serif;

@@ -23,9 +23,9 @@ const Publicacion = () => {
                     {publicacion.map((item) => {
                         // Renderiza el elemento
                         return (
-                            <div class="text-center pt-2">
+                            <div class="lista_pub text-center">
                                 <div class="titulo_publicacion">
-                                    <h5 key={item.titulo}>Categoria: {item.titulo}</h5>
+                                    <h5 key={item.titulo}><span>Categoria:</span><span className="titulo_p"> {item.titulo}</span></h5>
                                 </div>
                                 <div class="contenido_publicacion">
                                     <p class="card-text" key={item.contenido}>
@@ -36,6 +36,19 @@ const Publicacion = () => {
                                     <div class="date">
                                         <h6 key={item.fecha_pub}>{item.fecha_pub}</h6>
                                     </div>
+                                </div>
+                                <hr />
+                                <div class="links btn-group" role="group" aria-label="Basic example">
+                                    <a>
+                                        <img className="imgevent" src="https://cdn-icons-png.flaticon.com/128/3670/3670153.png" />
+                                    </a>
+                                    <a>
+                                        <img className="imgevent" src="https://cdn-icons-png.flaticon.com/128/263/263417.png" />
+                                    </a>
+                                    <a>
+                                    <img className="imgevent" src="https://cdn-icons-png.flaticon.com/128/6460/6460733.png" />
+
+                                    </a>
                                 </div>
                             </div>
                         );

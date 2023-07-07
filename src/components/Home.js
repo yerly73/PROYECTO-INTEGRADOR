@@ -5,6 +5,7 @@ import NewPublicacion from "./NewPublicacion";
 import Footer from "./Footer";
 import Appheader from "./Appheader";
 import Perfil from "./Perfil";
+import Evento from "./Evento";
 
 const Home = () => {
     useEffect(() => {
@@ -17,7 +18,9 @@ const Home = () => {
             <div class="main">
                 <NewPublicacion/>
                 <Publicacion/></div>
-            <div class="right">right</div>
+            <div class="right">
+                <Evento/>
+            </div>
             <div class="footer">footer</div>
         </div>
     );
