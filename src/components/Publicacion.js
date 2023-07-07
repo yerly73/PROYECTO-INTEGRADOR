@@ -16,23 +16,24 @@ const Publicacion = () => {
         fetchData();
     }, []);
     return (
-        <div>
+        <div className="publicaciones_contenido">
+            <div className="tituloPub"><h6>Publicaciones</h6></div>
             {publicacion.length ? (
                 <ul className="">
                     {publicacion.map((item) => {
                         // Renderiza el elemento
                         return (
-                            <div class=" text-center pt-2"><hr/>
-                                <div class="card-header">
-                                    <h5 key={item.titulo}>{item.titulo}</h5>
+                            <div class="text-center pt-2">
+                                <div class="titulo_publicacion">
+                                    <h5 key={item.titulo}>Categoria: {item.titulo}</h5>
                                 </div>
-                                <div class="card">
+                                <div class="contenido_publicacion">
                                     <p class="card-text" key={item.contenido}>
                                         {item.contenido}
                                     </p>
                                 </div>
                                 <div class="card-footer text-body-secondary">
-                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <div class="date">
                                         <h6 key={item.fecha_pub}>{item.fecha_pub}</h6>
                                     </div>
                                 </div>

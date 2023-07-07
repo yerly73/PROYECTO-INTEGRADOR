@@ -3,24 +3,22 @@ import { Link, useNavigate } from "react-router-dom";
 import Publicacion from "./Publicacion";
 import NewPublicacion from "./NewPublicacion";
 import Footer from "./Footer";
+import Appheader from "./Appheader";
+import Perfil from "./Perfil";
 
 const Home = () => {
     useEffect(() => {
     }, []);
 
     return (
-        <div class="text-center container pt-3">
-            <div class="row">
-                <div class="col">
-                    <NewPublicacion/>
-                </div>
-                <div class="col">
-                    <Publicacion/>
-                </div>
-            </div>
-            <div>
-                <Footer/>
-            </div>
+        <div class="container-app">
+            <div class="header"><Appheader/></div>
+            <div class="left"><Perfil/></div>
+            <div class="main">
+                <NewPublicacion/>
+                <Publicacion/></div>
+            <div class="right">right</div>
+            <div class="footer">footer</div>
         </div>
     );
 }

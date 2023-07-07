@@ -42,26 +42,16 @@ const NewPublicacion = () => {
     }
     return (
         
-        <div class="row"  >
-            
-                <form onSubmit={handlesubmit}>
-                <div class="menu_divisiones  col-lg-2">
-              <div class="foto_nombre">
-                <h5>YERLY SHEYNA AYSA MORENO</h5>
-                <a href="">Mi perfil</a>
-               </div>
-             </div>
-                    <div class="publicacion_comentarios offset-lg-2 col-lg-7 ">
-                        <h5>Publicar nuevo contenido:</h5>
-                        </div><hr></hr>
-                    <input required value={titulo} onChange={e => titulochange(e.target.value)} className="form-control" placeholder="¿Sobre que?">
-                        </input><br></br>
+        <div className="newpub">
+                <form className="formularioPublicacion" onSubmit={handlesubmit}>
+                    <div className="publicacion text-center pt-3"><h5>Publicar nuevo contenido:</h5><hr></hr></div>
+                    <input required value={titulo} onChange={e => titulochange(e.target.value)} className="form-control" placeholder="¿Sobre que?"></input><br></br>
                     <textarea required value={contenido} onChange={e => contenidochange(e.target.value)} className="form-control" placeholder='¿Que estas pensando hoy?'></textarea><br></br>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-primary me-md-2" type="submit">Publicar</button>
+                        <button class="btn btnsubmit btn-primary me-md-2" type="submit">Publicar</button>
                     </div><br></br>
                 </form>
-        </div>
+            </div>
     );
 }
 

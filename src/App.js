@@ -13,7 +13,6 @@ function App() {
     <div className="App">
       <ToastContainer theme='colored' position='top-center'></ToastContainer>
       <BrowserRouter>
-      <Appheader></Appheader>
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
