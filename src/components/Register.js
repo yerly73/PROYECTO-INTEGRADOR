@@ -65,9 +65,13 @@ const Register = () => {
     }
     return (
         <div className="">
-                <div class="container-fluid header">
-                    <h1 className='text-center fw-bold'>TCMFriends</h1>
-                </div>
+                <div class="wrapper">
+                <svg>
+                    <text x="50%" y="50%" dy=".35em" text-anchor="middle">
+                        TecMedia
+                    </text>
+                </svg>
+            </div>
             <div className="offset-lg-3 col-lg-6">
                 <form className="container" onSubmit={handlesubmit}>
                     <div className="">
