@@ -32,7 +32,7 @@
 }
 .header{
   width: 100%;
-  background-color: blue;
+  background-color: rgb(74, 74, 100);
   color: #fff;
   padding: 1%;
 }
@@ -48,7 +48,7 @@ app-check{
 }
 .header{
   width: 100%;
-  background-color: blue;
+  background-color: rgb(49, 68, 90);
   color: #fff;
   padding: 1%;
 }
@@ -65,4 +65,8 @@ a{
   to {
     transform: rotate(360deg);
   }
+}
+
+.navbar-brand{
+  color: black;
 }
