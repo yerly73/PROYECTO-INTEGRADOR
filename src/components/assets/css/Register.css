@@ -1,0 +1,213 @@
+form .nombre{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 50px 0;
+}
+.nombre input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;    
+}
+.nombre label{
+    position: absolute;
+    top:50%;
+    left: 5px;
+    color: #000000;
+    transform: translateY(-140%);
+    font-size: 16px;
+    pointer-events: none;
+    
+}
+
+
+/* APELLIDO */
+form .apellido{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 50px 0;
+}
+.apellido input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+} 
+.apellido label{
+    position: absolute;
+    top:50%;
+    left: 5px;
+    color: #000000;
+    transform: translateY(-140%);
+    font-size: 16px;
+    pointer-events: none;
+    
+}
+/* Ciclo*/
+form .ciclo {
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 50px 0;
+}
+.ciclo select{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size:16px;
+    border:none;
+    background:none;
+    outline:none;
+} 
+.ciclo label{
+    position: absolute;
+    top:50%;
+    left: 5px;
+    color: #000000;
+    transform: translateY(-140%);
+    font-size: 16px;
+    pointer-events: none;
+    
+}
+/* Carrera ----------------------------------*/
+form .carrera{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 50px 0;
+}
+.carrera select{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+} 
+.carrera label{
+    position: absolute;
+    top:50%;
+    left: 5px;
+    color: #000000;
+    transform: translateY(-140%);
+    font-size: 16px;
+    pointer-events: none;    
+}
+/*Correo ------------------------------------*/
+form .correo{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 50px 0;
+}
+.correo input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+} 
+.correo label{
+    position: absolute;
+    top:50%;
+    left: 5px;
+    color: #000000;
+    transform: translateY(-140%);
+    font-size: 16px;
+    pointer-events: none;    
+}
+/*Contraseña*/
+form .contraseña{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 50px 0;
+}
+.contraseña input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+} 
+.contraseña label{
+    position: absolute;
+    top:50%;
+    left: 5px;
+    color: #000000;
+    transform: translateY(-140%);
+    font-size: 16px;
+    pointer-events: none;    
+}
+/*Correo ------------------------------------*/
+button[type="submit"]{
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background:  #3E5F8A;
+    border-radius: 25px;
+    font-size: 18px;
+    color:rgb(255, 255, 255);
+    cursor:pointer;
+    outline: none;
+}
+button[type="submit"]:hover{
+    border-color: #3E5F8A;
+    transition: .5s;
+}
+.login{
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background: #6C3483;
+    border-radius: 25px;
+    font-size: 18px;
+    color:rgb(255, 255, 255);
+    cursor:pointer;
+    outline: none;
+    
+}
+/*IMG ------------------------------------*/
+.img-alum img{
+    width: 40%; /* Ajusta el ancho de la imagen al 100% del contenedor */
+    height: auto; /* Ajusta la altura automáticamente para mantener la proporción */
+    max-height: auto; /* Establece una altura máxima para evitar que la imagen se vuelva demasiado grande */
+    left: 10%;
+    transform: translate(-100%, -1px);
+    
+    
+  }
+
+.img-alum1 img{
+    width: 40%; /* Ajusta el ancho de la imagen al 100% del contenedor */
+    height: auto; /* Ajusta la altura automáticamente para mantener la proporción */
+    max-height: auto; /* Establece una altura máxima para evitar que la imagen se vuelva demasiado grande */
+    flex-grow: 1;   
+    margin: auto;
+    flex-shrink: 0;
+    margin-left: 0;
+    left: 10%;
+    transform: translate(270%, -100.7%);
+    
+    
+  }
+
+.plantilla{
+        position: absolute;
+        top: 45%;
+        left: 70%;
+        transform: translate(-110%, -10%);
+        width: 400px;
+        background: rgb(255, 255, 255);
+        border-radius: 10px;
+        flex: 1px;
+          
+
+}
