@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Footer from "./Footer";
+import Appheader from './Appheader';
 
 const Editarperfil = () => {
 
@@ -44,16 +45,11 @@ const Editarperfil = () => {
 
 
         const updatedData = {
-            nombre: nombre,
-            apellido: apellido,
-            email: email,
-            password: password,
-            ciclo: ciclo,
-            carrera: carrera,
             descripcion: descripcion
+
         };
 
-        fetch(`http://localhost:8095/api/v1/usuario/actualizar/${usuario.usuarioid}`, {
+        fetch(`http://localhost:8095/api/v1/usuario/actualizar/${username}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -64,7 +60,7 @@ const Editarperfil = () => {
             .then(responseData => {
                 setUsuario(responseData);
                 toast.success('Actualizado correctamente.')
-                navigate('/perfil');
+                navigate('/');
             })
             .catch(error => {
                 console.error('Error al actualizar los datos:', error);
@@ -74,6 +70,7 @@ const Editarperfil = () => {
 
     return (
         <div className="">
+            <Appheader />
             <div className="offset-lg-3 col-lg-6">
             </div>
             <div>
@@ -89,9 +86,15 @@ const Editarperfil = () => {
                                     <div className="row">
                                         <div className="col-lg-6">
                                             <div className="form-group">
+                                                <strong>Email:</strong>
+                                                <input readOnly value={usuario.email} onChange={e => emailchange(e.target.value)} type="email" className="form-control"></input>
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-6">
+                                            <div className="form-group">
                                                 <strong>Nombre:</strong>
                                                 <input value={usuario.nombre} onChange={e => nombrechange(e.target.value)} className="form-control"></input>
-                                            </div>
+                                            </div><br/>
                                         </div>
                                         <div className="col-lg-6">
                                             <div className="form-group">
@@ -127,28 +130,22 @@ const Editarperfil = () => {
                                             </div>
                                         </div>
                                         <div className="col-lg-6">
-                                            <div className="form-group">
-                                                <strong>Email:</strong>
-                                                <input readOnly value={usuario.email} onChange={e => emailchange(e.target.value)} type="email" className="form-control"></input>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-6">
-                                            <div className="form-group">
+                                            <div hidden className="form-group">
                                                 <strong>Contraseña:</strong>
-                                                <input value={usuario.password} onChange={e => passwordchange(e.target.value)} className="form-control" type="password"></input>
+                                                <input hidden value={usuario.password} onChange={e => passwordchange(e.target.value)} className="form-control" type="password"></input>
                                             </div>
                                         </div>
                                         <div className="col-lg-12">
                                             <div className="form-group"><br />
                                                 <strong>Descripcion:</strong>
-                                                <textarea value={usuario.descripcion} onChange={e => descripcionchange(e.target.value)} className="form-control" type="text" />
+                                                <input onChange={e => descripcionchange(e.target.value)} className="form-control" type="text" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className=""><hr />
                                     <div class="d-grid gap-2 col-6 mx-auto">
-                                        <button type="submit" class="btn btn-success">Actualizar</button>
+                                        <button type="submit" className="btn btn-success">Actualizar</button>
                                     </div><br />
                                 </div>
                             </div>

@@ -23,14 +23,11 @@ const Perfil = () => {
             obtenerDatosUsuario();
         }
     }, [username]);
-
     return (
-        <div className="">
+        <div className="cont_perfil">
             {usuario ? (
-                <div className="container text-center">
                     <div className="row">
-                        <div className="col"></div>
-                        <div className="col-6">
+                        <div className="col">
                             <div className="text-center pt-2"><h1>{usuario.nombre} {usuario.apellido}</h1></div>
                             <hr />
                             <div className="text-center pt-2" style={{ paddingBottom: 7 }}>
@@ -40,12 +37,10 @@ const Perfil = () => {
                                 <h8><strong>Descripcion: </strong>{usuario.descripcion}</h8><hr />
                             </div>
                         </div>
-                        <div className="col"></div>
-                        <div class="d-grid gap-2 col-6 mx-auto">
-                            <button class="btn btn-dark" type="button"><Link to={'/editarperfil'}>Editar Perfil</Link></button>
+                        <div class="">
+                            <button class="edit btn btn-dark" type="button"><Link to={'/editarperfil'}><span>Editar Perfil</span></Link></button>
                         </div>
                     </div>
-                </div>
             ) : (
                 <p>Cargando datos del usuario...</p>
             )}

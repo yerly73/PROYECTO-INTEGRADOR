@@ -30,15 +30,15 @@ const Login = () => {
             }).then((resp) => {
                 console.log(resp)
                 if (Object.keys(resp).length === 0) {
-                    toast.error('Login failed, invalid credentials');
+                    toast.error('Crredenciales invalidos');
                 } else {
-                    toast.success('Success');
+                    //toast.success('login Exitoso');
                     sessionStorage.setItem('username', email);
                     sessionStorage.setItem('jwttoken', resp.jwtToken);
                     usenavigate('/')
                 }
             }).catch((err) => {
-                toast.error('Login Failed due to :' + err.message);
+                toast.error('Fallo inicio sesion' + err.message);
             });
         }
     }
@@ -46,11 +46,11 @@ const Login = () => {
         let result = true;
         if (email === '' || email === null) {
             result = false;
-            toast.warning('Please Enter Username');
+            toast.warning('Ingresa usuario');
         }
         if (password === '' || password === null) {
             result = false;
-            toast.warning('Please Enter Password');
+            toast.warning('Ingresa password');
         }
         return result;
     }

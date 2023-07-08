@@ -6,6 +6,7 @@ const NewPublicacion = () => {
 
     const [titulo, titulochange] = useState("");
     const [contenido, contenidochange] = useState("");
+    const [url, urlchange] = useState("");
 
     const navigate = useNavigate();
 
@@ -20,12 +21,16 @@ const NewPublicacion = () => {
             isproceed = false;
             errormessage += ' contenido';
         }
+        if (url === null || url === '') {
+            isproceed = false;
+            errormessage += ' url';
+        }
         return isproceed;
     }
 
     const handlesubmit = (e) => {
         e.preventDefault();
-        let regobj = { titulo, contenido };
+        let regobj = { titulo, contenido,url };
         if (IsValidate()) {
             //console.log(regobj);
             fetch("http://localhost:8095/api/v1/publicacion/save", {
@@ -36,7 +41,7 @@ const NewPublicacion = () => {
                 toast.success('Publicado :D')
                 navigate('/');
             }).catch((err) => {
-                toast.error('Failed :' + err.message);
+                toast.error('Error :' + err.message);
             });
         }
     }
@@ -46,7 +51,8 @@ const NewPublicacion = () => {
                 <form className="formularioPublicacion" onSubmit={handlesubmit}>
                     <div className="publicacion text-center pt-3"><h5>Publicar nuevo contenido:</h5><hr></hr></div>
                     <input required value={titulo} onChange={e => titulochange(e.target.value)} className="form-control" placeholder="¿Sobre que?"></input><br></br>
-                    <textarea required value={contenido} onChange={e => contenidochange(e.target.value)} className="form-control" placeholder='¿Que estas pensando hoy?'></textarea><br></br>
+                    <textarea required value={contenido} onChange={e => contenidochange(e.target.value)} className="form-control" placeholder='¿Que es?'></textarea><br></br>
+                    <input required value={url} onChange={e => urlchange(e.target.value)} className="form-control" placeholder="Link"></input><br></br>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button class="btn btnsubmit btn-primary me-md-2" type="submit">Publicar</button>
                     </div><br></br>

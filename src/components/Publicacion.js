@@ -31,7 +31,7 @@ const Publicacion = () => {
                                     <p class="card-text" key={item.contenido}>
                                         {item.contenido}
                                     </p>
-                                </div>
+                                    <a target="_blank" href={item.url}>{item.url}</a>                                </div>
                                 <div class="card-footer text-body-secondary">
                                     <div class="date">
                                         <h6 key={item.fecha_pub}>{item.fecha_pub}</h6>
@@ -47,7 +47,6 @@ const Publicacion = () => {
                                     </a>
                                     <a>
                                     <img className="imgevent" src="https://cdn-icons-png.flaticon.com/128/6460/6460733.png" />
-
                                     </a>
                                 </div>
                             </div>
@@ -56,7 +55,7 @@ const Publicacion = () => {
                     })}
                 </ul>
             ) : (
-                <p>Loading data...</p>
+                <p>Publicaaciones...</p>
             )}
         </div>
     )

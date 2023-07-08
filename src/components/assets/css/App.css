@@ -157,7 +157,8 @@ img {
 .contenido_publicacion {
   background-color: #e3e8e7;
   padding: 10px;
-  text-align: start;
+  text-align: justify;
+  padding: 25px;
 }
 
 .card {
@@ -176,11 +177,30 @@ img {
 .social {
   text-align: end;
 }
-
+.cont_perfil{
+  text-align: center;
+  padding: 15px;
+}
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-
+.cont_perfil .edit{
+  background-color: #050c30;
+  border: none;
+}
+.cont_perfil .edit:hover{
+  background-color: #05081c;
+  border: none;
+}
+.cont_perfil .edit span{
+  text-decoration: none;
+  color: white;
+}
+.cont_perfil .edit span:hover{
+  text-decoration: none;
+  color: white;
+  font-weight: bolder;
+}
 img {
   border-radius: 5px 5px 0 0;
 }
@@ -244,8 +264,6 @@ body {
   /* and place it over the hamburger */
   -webkit-touch-callout: none;
 }
-
-/* Burger menu */
 .menu-container span {
   display: block;
   width: 33px;

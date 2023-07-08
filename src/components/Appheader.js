@@ -37,7 +37,7 @@ const Appheader = () => {
                 <ul>
                     <li>
                         <a href="#inicio">
-                            Inicio
+                        <Link to={'/'}>Inicio</Link>
                         </a>
                     </li>
                     <li>
