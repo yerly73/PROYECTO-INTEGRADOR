@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { toast } from "react-toastify";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
 
 const MisPublicaciones = () => {
-    const [publicacion, setPublicaciones] = useState([]);
-    const username = sessionStorage.getItem('username'); // Establece el valor del nombre de usuario que deseas filtrar
+    const [publicaciones, setPublicaciones] = useState([]);
+    const [confirmDelete, setConfirmDelete] = useState(null);
+    const username = sessionStorage.getItem('username');
     const navigate = useNavigate();
 
     useEffect(() => {
-        const MisPublicaciones = async () => {
+        const fetchPublicaciones = async () => {
             try {
                 const response = await fetch(`http://localhost:8095/api/v1/publicacion/email/${username}`);
                 if (response.ok) {
@@ -23,19 +24,27 @@ const MisPublicaciones = () => {
         };
 
         if (username) {
-            MisPublicaciones();
+            fetchPublicaciones();
         }
     }, [username]);
 
-    const handleDelete = (publicacionid) => {
-        fetch(`http://localhost:8095/api/v1/publicacionfavorito/eliminar/${publicacionid}`, {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" },
+    const handleDeleteConfirmation = (publicacionid) => {
+        setConfirmDelete(publicacionid);
+    };
+
+    const handleDeleteCancel = () => {
+        setConfirmDelete(null);
+    };
+
+    const handleDeleteConfirm = (publicacionid) => {
+        fetch(`http://localhost:8095/api/v1/publicacion/eliminar/${publicacionid}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
         })
             .then((res) => {
                 if (res.ok) {
                     toast.success('Publicación eliminada');
-                    window.location.reload()
+                    window.location.reload();
                 } else {
                     throw new Error('Error al eliminar la publicación');
                 }
@@ -43,64 +52,74 @@ const MisPublicaciones = () => {
             .catch((err) => {
                 toast.error('Error: ' + err.message);
             });
-
     };
-
 
     return (
         <div className="publicaciones_contenido">
             <div className="tituloPub">
                 <h6>Mis Publicaciones</h6>
             </div>
-            {publicacion.length ? (
+            {publicaciones.length ? (
                 <ul>
-                    {publicacion.map((item) => (
-                        <div key={item.id} className="lista_pub text-center">
+                    {publicaciones.map((publicacion) => (
+                        <div key={publicacion.id} className="lista_pub text-center">
                             <div className="titulo_publicacion">
                                 <h5>
-                                    <span>Categoria:</span>{" "}
-                                    <span className="titulo_p">{item.categoria}</span>
+                                    <span>Categoria:</span> <span className="titulo_p">{publicacion.categoria}</span>
                                 </h5>
                             </div>
                             <div className="contenido_publicacion">
                                 <div className="text-center">
-                                    <h5>{item.titulo}</h5>
+                                    <h5>{publicacion.titulo}</h5>
                                 </div>
-                                <p className="card-text">{item.contenido}</p>
-                                <a target="_blank" href={item.url}>
-                                    {item.url}
+                                <p className="card-text">{publicacion.contenido}</p>
+                                <a target="_blank" href={publicacion.url}>
+                                    {publicacion.url}
                                 </a>
                             </div>
                             <div className="card-footer text-body-secondary">
                                 <div className="date">
-                                    <h6>{item.fecha_pub}</h6>
-                                    <h6>{item.email}</h6>
+                                    <h6>{publicacion.fecha_pub}</h6>
+                                    <h6>{publicacion.email}</h6>
                                 </div>
                             </div>
                             <hr />
                             <div className="links btn-group" role="group" aria-label="Basic example">
-                                <button className="button_pf" type="button" onClick={() => handleDelete(item.publicacionid)}>
-                                    <img
-                                        className="imgevent"
-                                        src="https://cdn-icons-png.flaticon.com/128/263/263417.png"
-                                        alt="Añadir a favoritos"
-                                    />
-                                </button>
-                                <button className="button_editar" type="button">
-                                    <Link to={`/editarpublicacion/${item.publicacionid}`}>
-                                        <img
-                                            className="imgevent"
-                                            src="https://cdn-icons-png.flaticon.com/128/2921/2921222.png"
-                                            alt="Añadir a favoritos"
-                                        />
-                                    </Link>
-                                </button>
+                                {confirmDelete === publicacion.publicacionid ? (
+                                    <>
+                                        <button className="button_confirmar" type="button" onClick={() => handleDeleteConfirm(publicacion.publicacionid)}>
+                                            Confirmar
+                                        </button>
+                                        <button className="button_cancelar" type="button" onClick={handleDeleteCancel}>
+                                            Cancelar
+                                        </button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <button className="button_eliminar" type="button" onClick={() => handleDeleteConfirmation(publicacion.publicacionid)}>
+                                            <img
+                                                className="imgevent"
+                                                src="https://cdn-icons-png.flaticon.com/128/2603/2603105.png"
+                                                alt="Añadir a favoritos"
+                                            />
+                                        </button>
+                                        <button className="button_editar" type="button">
+                                            <Link to={`/editarpublicacion/${publicacion.publicacionid}`}>
+                                                <img
+                                                    className="imgevent"
+                                                    src="https://cdn-icons-png.flaticon.com/128/2921/2921222.png"
+                                                    alt="Añadir a favoritos"
+                                                />
+                                            </Link>
+                                        </button>
+                                    </>
+                                )}
                             </div>
                         </div>
                     ))}
                 </ul>
             ) : (
-                <p>No has hecho ninguna publicacion.</p>
+                <p>No has hecho ninguna publicación.</p>
             )}
         </div>
     );

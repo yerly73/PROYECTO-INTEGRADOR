@@ -9,6 +9,12 @@ const Editarperfil = () => {
     const [usuario, setUsuario] = useState(null);
     const username = sessionStorage.getItem('username');
 
+    const [nombre, setNombre] = useState('');
+    const [apellido, setApellido] = useState('');
+    const [ciclo, setCiclo] = useState('');
+    const [carrera, setCarrera] = useState('');
+    const [descripcion, setDescripcion] = useState('');
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -17,6 +23,12 @@ const Editarperfil = () => {
                 const response = await fetch(`http://localhost:8095/api/v1/usuario/email/${username}`);
                 if (response.ok) {
                     const data = await response.json();
+                    const { nombre,apellido,ciclo,carrera,descripcion } = data;
+                    setNombre(nombre);
+                    setApellido(apellido);
+                    setCiclo(ciclo);
+                    setCarrera(carrera);
+                    setDescripcion(descripcion);
                     setUsuario(data);
                 } else {
                     console.error('Error en la respuesta de la API:', response.status);
@@ -30,42 +42,34 @@ const Editarperfil = () => {
             obtenerDatosUsuario();
         }
     }, [username]);
+    const handleEditar = async (e) => {
+        e.preventDefault();
 
-
-    const [nombre, nombrechange] = useState("");
-    const [apellido, apellidochange] = useState("");
-    const [email, emailchange] = useState("");
-    const [password, passwordchange] = useState("");
-    const [ciclo, ciclochange] = useState("");
-    const [carrera, carrerachange] = useState("");
-    const [descripcion, descripcionchange] = useState("");
-
-
-    const updateData = () => {
-
-
-        const updatedData = {
-            descripcion: descripcion
-
+        const datosActualizados = {
+            nombre,
+            apellido,
+            ciclo,
+            carrera,
+            descripcion
         };
 
-        fetch(`http://localhost:8095/api/v1/usuario/actualizar/${username}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedData)
-        })
-            .then(response => response.json())
-            .then(responseData => {
-                setUsuario(responseData);
-                toast.success('Actualizado correctamente.')
-                navigate('/');
-            })
-            .catch(error => {
-                console.error('Error al actualizar los datos:', error);
-                toast.success('Error al actualizar!')
+        try {
+            const response = await fetch(`http://localhost:8095/api/v1/usuario/actualizar/${username}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(datosActualizados),
             });
+
+            if (response.ok) {
+                toast.success('Actualización correcta.');
+            } else {
+                toast.warning('Error al actualizar.');
+            }
+        } catch (error) {
+            console.log('Error al enviar la solicitud de actualización:', error);
+        }
     };
 
     return (
@@ -75,36 +79,36 @@ const Editarperfil = () => {
             <div>
                 {usuario ? (
                     <div>
-                        <form className="container" onSubmit={updateData}>
+                        <form className="container" onSubmit={handleEditar}>
                             <div className="">
                                 <div className="text-center"><br />
                                     <h3>Actualizar Datos</h3><hr />
                                 </div>
 
-                                <div className="card-body">
+                                <div className="card-body text-start">
                                     <div className="row">
                                         <div className="col-lg-6">
                                             <div className="form-group">
                                                 <strong>Email:</strong>
-                                                <input readOnly value={usuario.email} onChange={e => emailchange(e.target.value)} type="email" className="form-control"></input>
+                                                <input readOnly value={usuario.email} type="email" className="form-control"></input>
                                             </div>
                                         </div>
                                         <div className="col-lg-6">
                                             <div className="form-group">
                                                 <strong>Nombre:</strong>
-                                                <input value={usuario.nombre} onChange={e => nombrechange(e.target.value)} className="form-control"></input>
+                                                <input value={nombre} onChange={(e) => setNombre(e.target.value)} className="form-control"></input>
                                             </div><br/>
                                         </div>
                                         <div className="col-lg-6">
                                             <div className="form-group">
                                                 <strong>Apellido:</strong>
-                                                <input value={usuario.apellido} onChange={e => apellidochange(e.target.value)} className="form-control"></input>
+                                                <input value={apellido} onChange={(e) => setApellido(e.target.value)} className="form-control"></input>
                                             </div><br />
                                         </div>
                                         <div className="col-lg-6">
                                             <div className="form-group">
                                                 <strong>Ciclo:</strong>
-                                                <select className="form-select" aria-label="Default select example" value={usuario.ciclo} onChange={e => ciclochange(e.target.value)}>
+                                                <select className="form-select" aria-label="Default select example" value={ciclo} onChange={e => setCiclo(e.target.value)}>
                                                     <option selected value="I">I</option>
                                                     <option value="II">II</option>
                                                     <option value="III">III</option>
@@ -116,28 +120,26 @@ const Editarperfil = () => {
                                             </div>
                                         </div>
                                         <div className="col-lg-6">
-                                            <div className="form-group">
+                                            <div hidden className="form-group">
+                                                <strong>Contraseña:</strong>
+                                                <input hidden value={usuario.password} className="form-control" type="password"></input>
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-12">
+                                        <div className="form-group">
                                                 <label><strong>Carrera:</strong></label>
-                                                <select required className="form-select" aria-label="Default select example" value={usuario.carrera} onChange={e => carrerachange(e.target.value)}>
+                                                <select required className="form-select" aria-label="Default select example" value={carrera} onChange={e => setCarrera(e.target.value)}>
                                                     <option selected value="Diseño y Desarrollo de Software">Diseño y Desarrollo de Software</option>
                                                     <option value="Diseño Industrial">Diseño Industrial</option>
                                                     <option value="Big Data y Ciencia de Datos">Big Data y Ciencia de Datos</option>
                                                     <option value="Diseño y Desarrollo de Simuladores y Videojuegos">Diseño y Desarrollo de Simuladores y Videojuegos</option>
                                                     <option value="Administración de Redes y Comunicaciones">Administración de Redes y Comunicaciones</option>
                                                     <option value="Egresado">Egresado</option>
-                                                </select><br />
+                                                </select>
                                             </div>
-                                        </div>
-                                        <div className="col-lg-6">
-                                            <div hidden className="form-group">
-                                                <strong>Contraseña:</strong>
-                                                <input hidden value={usuario.password} onChange={e => passwordchange(e.target.value)} className="form-control" type="password"></input>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-12">
                                             <div className="form-group"><br />
                                                 <strong>Descripcion:</strong>
-                                                <input onChange={e => descripcionchange(e.target.value)} className="form-control" type="text" />
+                                                <input value={descripcion} onChange={e => setDescripcion(e.target.value)} className="form-control" type="text" />
                                             </div>
                                         </div>
                                     </div>

@@ -23,8 +23,8 @@ const Evento = () => {
           <div className="social">
             <a href={evento.url_info} target="_blank" rel="noopener noreferrer">
               <img
-                className="imgevent"
-                src="https://cdn-icons-png.flaticon.com/128/2985/2985047.png"
+                className="imgevent link"
+                src="https://cdn-icons-png.flaticon.com/128/2596/2596200.png"
                 alt="Enlace al evento"
               />
             </a>

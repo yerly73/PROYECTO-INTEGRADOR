@@ -78,7 +78,14 @@ const PublicacionFavoritos = () => {
                   <button className="button_pf" type="button" onClick={() => handleDelete(item.publicacionid)}>
                     <img
                       className="imgevent"
-                      src="https://cdn-icons-png.flaticon.com/128/263/263417.png"
+                      src="https://cdn-icons-png.flaticon.com/128/2603/2603105.png"
+                      alt="Añadir a favoritos"
+                    />
+                  </button>
+                  <button className="button_pf" type="button">
+                    <img
+                      className="imgevent"
+                      src="https://cdn-icons-png.flaticon.com/128/10238/10238080.png"
                       alt="Añadir a favoritos"
                     />
                   </button>

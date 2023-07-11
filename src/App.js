@@ -23,7 +23,7 @@ function App() {
         <Route path='/editarperfil' element={<EditarPerfilView/>}></Route>
         <Route path='/publicacionesfavoritos' element={<PublicacionFavoritoView/>}></Route>
         <Route path='/mispublicaciones' element={<MisPublicacionesView/>}></Route>
-        <Route path='/editarpublicacion/:publicaionid' element={<EditarPublicacionView/>}></Route>
+        <Route path='/editarpublicacion/:publicacionid' element={<EditarPublicacionView/>}></Route>
       </Routes>
       
       </BrowserRouter>

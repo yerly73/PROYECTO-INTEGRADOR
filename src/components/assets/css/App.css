@@ -184,6 +184,9 @@ img {
   height: 30px;
   margin-bottom: 10px;
 }
+.social .link{
+ margin-right: 10px;
+}
 
 .social {
   text-align: end;
@@ -398,4 +401,50 @@ body {
   .menu li {
     padding: 0 20px;
   }
+}
+
+/* Estilos para los botones de confirmación y cancelación */
+.button_confirmar {
+  background-color: rgb(31, 38, 89);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.button_cancelar {
+  background-color: rgb(68, 45, 45);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+/* Estilos para el botón de eliminar */
+.button_eliminar {
+  background-color: #ffffff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+/* Estilos para el botón de editar */
+.button_editar {
+  background-color: #ffffff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Estilos para los botones en general */
+.links button {
+  margin-right: 8px;
+}
+
+div .links .imgevent{
+  margin-left: 20px;
+  
 }

@@ -91,8 +91,9 @@ const Publicacion = () => {
                                 </div>
                                 <div className="card-footer text-body-secondary">
                                     <div className="date">
+                                        <a className="link"><h6>{item.email}</h6></a>
                                         <h6>{item.fecha_pub}</h6>
-                                        <h6>{item.email}</h6>
+
                                         <input
                                             hidden
                                             required
@@ -107,7 +108,7 @@ const Publicacion = () => {
                                     <button className="button_pf" type="submit">
                                         <img
                                             className="imgevent"
-                                            src="https://cdn-icons-png.flaticon.com/128/263/263417.png"
+                                            src="https://cdn-icons-png.flaticon.com/128/10238/10238080.png"
                                             alt="Añadir a favoritos"
                                         />
                                     </button>
