@@ -13,7 +13,7 @@ const MisPublicaciones = () => {
     useEffect(() => {
         const fetchPublicaciones = async () => {
             try {
-                const response = await fetch(`http://localhost:8095/api/v1/publicacion/email/${username}`);
+                const response = await fetch(`http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/publicacion/email/${username}`);
                 if (response.ok) {
                     const data = await response.json();
                     setPublicaciones(data);
