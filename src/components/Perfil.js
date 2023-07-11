@@ -24,11 +24,11 @@ const Perfil = () => {
         }
     }, [username]);
     return (
-        <div className="cont_perfil">
+        <div className="publicaciones_contenido">
             {usuario ? (
-                    <div className="row">
-                        <div className="col">
-                            <div className="text-center pt-2"><h1>{usuario.nombre} {usuario.apellido}</h1></div>
+                    <div className="">
+                        <div className="">
+                            <div className="nombre text-center pt-2"><h1>{usuario.nombre} {usuario.apellido}</h1></div>
                             <hr />
                             <div className="text-center pt-2" style={{ paddingBottom: 7 }}>
                                 <h8><strong key={usuario.nombre}>Carrera: </strong>{usuario.carrera}</h8><hr />

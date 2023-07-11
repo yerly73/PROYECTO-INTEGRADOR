@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Footer from "./Footer";
 import album from './assets/img/album.jpg';
 import './assets/css/Register.css';
 

@@ -41,13 +41,18 @@ const Appheader = () => {
                         </a>
                     </li>
                     <li>
-                        <a href="#eventos">
-                            Eventos
+                        <a href="#docs">
+                            Tecsup
                         </a>
                     </li>
                     <li>
                         <a href="#docs">
-                            Tecsup
+                        <Link to={'/publicacionesfavoritos'}>Publicaciones Favoritos</Link>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#docs">
+                        <Link to={'/mispublicaciones'}>Mis publicaciones</Link>
                         </a>
                     </li>
                 </ul>

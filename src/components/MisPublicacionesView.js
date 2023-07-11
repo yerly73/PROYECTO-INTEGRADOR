@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Publicacion from "./Publicacion";
-import NewPublicacion from "./NewPublicacion";
-import Footer from "./Footer";
+import { useEffect } from "react";
+import MisPublicaciones from "./MisPublicaciones";
 import Appheader from "./Appheader";
 import Perfil from "./Perfil";
 import Evento from "./Evento";
-import PublicacionesFavoritos from "./PublicacionesFavoritos";
 
-const Home = () => {
+const MisPublicacionesView = () => {
     useEffect(() => {
     }, []);
 
@@ -17,13 +13,13 @@ const Home = () => {
             <div class="header"><Appheader/></div>
             <div class="left"><Perfil/></div>
             <div class="main">
-                <NewPublicacion/>
-                <Publicacion/></div>
+                <MisPublicaciones/></div>
             <div class="right">
                 <Evento/>
             </div>
+            <div class="footer">footer</div>
         </div>
     );
 }
 
-export default Home;
+export default MisPublicacionesView;

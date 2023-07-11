@@ -147,9 +147,16 @@ img {
   border-color: #050c30;
   border: solid;
 }
+.lista_pub .button_pf{
+  background-color: rgb(255, 255, 255);
+  border: none;
+}
 .publicaciones_contenido .links{
   text-align: start;
   color: black;
+}
+.publicaciones_contenido .nombre {
+  text-transform: capitalize;
 }
 .titulo_p{
   text-transform: uppercase;
@@ -160,7 +167,11 @@ img {
   text-align: justify;
   padding: 25px;
 }
-
+.button_editar{
+  margin-left: 10px;
+  border: none;
+  background-color: white;
+}
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
@@ -180,6 +191,9 @@ img {
 .cont_perfil{
   text-align: center;
   padding: 15px;
+}
+.cont_perfil .nombre{
+  text-transform: capitalize;
 }
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);

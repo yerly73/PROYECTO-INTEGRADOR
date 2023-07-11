@@ -70,7 +70,6 @@ const Editarperfil = () => {
 
     return (
         <div className="">
-            <Appheader />
             <div className="offset-lg-3 col-lg-6">
             </div>
             <div>

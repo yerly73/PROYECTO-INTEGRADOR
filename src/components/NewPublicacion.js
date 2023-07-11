@@ -3,62 +3,93 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const NewPublicacion = () => {
+  const [titulo, setTitulo] = useState("");
+  const [categoria, setCategoria] = useState("");
+  const [contenido, setContenido] = useState("");
+  const [url, setUrl] = useState("");
+  const email = sessionStorage.getItem("username");
 
-    const [titulo, titulochange] = useState("");
-    const [contenido, contenidochange] = useState("");
-    const [url, urlchange] = useState("");
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const opcionesCategoria = [
+    { value: "Recursos académicos", label: "Recursos académicos" },
+    { value: "Orientación vocacional y profesional", label: "Orientación vocacional y profesional" },
+    { value: "Experiencias estudiantiles", label: "Experiencias estudiantiles" },
+    { value: "Desarrollo personal", label: "Desarrollo personal" },
+    { value: "Recomendaciones", label: "Recomendaciones" },
+    { value: "Consejos de estudio", label: "Consejos de estudio" },
+    { value: "Proyectos y trabajos destacados", label: "Proyectos y trabajos destacados" },
+    { value: "Apoyo y consejos para exámenes", label: "Apoyo y consejos para exámenes" },
+    { value: "Idiomas y estudios internacionales", label: "Idiomas y estudios internacionales" },
+    // Agrega más opciones de categoría según tus necesidades
+  ];
 
-    const IsValidate = () => {
-        let isproceed = true;
-        let errormessage = 'Por favor ingresa los datos en ';
-        if (titulo === null || titulo === '') {
-            isproceed = false;
-            errormessage += ' titulo';
-        }
-        if (contenido === null || contenido === '') {
-            isproceed = false;
-            errormessage += ' contenido';
-        }
-        if (url === null || url === '') {
-            isproceed = false;
-            errormessage += ' url';
-        }
-        return isproceed;
+  const IsValidate = () => {
+    let isproceed = true;
+    let errormessage = 'Por favor ingresa los datos en ';
+    if (titulo === null || titulo === '') {
+      isproceed = false;
+      errormessage += ' titulo';
     }
-
-    const handlesubmit = (e) => {
-        e.preventDefault();
-        let regobj = { titulo, contenido,url };
-        if (IsValidate()) {
-            //console.log(regobj);
-            fetch("http://localhost:8095/api/v1/publicacion/save", {
-                method: "POST",
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify(regobj)
-            }).then((res) => {
-                toast.success('Publicado :D')
-                navigate('/');
-            }).catch((err) => {
-                toast.error('Error :' + err.message);
-            });
-        }
+    if (contenido === null || contenido === '') {
+      isproceed = false;
+      errormessage += ' contenido';
     }
-    return (
-        
-        <div className="newpub">
-                <form className="formularioPublicacion" onSubmit={handlesubmit}>
-                    <div className="publicacion text-center pt-3"><h5>Publicar nuevo contenido:</h5><hr></hr></div>
-                    <input required value={titulo} onChange={e => titulochange(e.target.value)} className="form-control" placeholder="¿Sobre que?"></input><br></br>
-                    <textarea required value={contenido} onChange={e => contenidochange(e.target.value)} className="form-control" placeholder='¿Que es?'></textarea><br></br>
-                    <input required value={url} onChange={e => urlchange(e.target.value)} className="form-control" placeholder="Link"></input><br></br>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btnsubmit btn-primary me-md-2" type="submit">Publicar</button>
-                    </div><br></br>
-                </form>
-            </div>
-    );
+    if (url === null || url === '') {
+      isproceed = false;
+      errormessage += ' url';
+    }
+    return isproceed;
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (IsValidate()) {
+      const regobj = { categoria, titulo, contenido, url, email };
+      fetch("http://localhost:8095/api/v1/publicacion/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(regobj)
+      })
+        .then((res) => {
+          if (res.ok) {
+            toast.success('Publicado :D');
+            navigate('/');
+          } else {
+            throw new Error('Error al publicar la publicación');
+          }
+        })
+        .catch((err) => {
+          toast.error('Error: ' + err.message);
+        });
+    }
+  };
+  
+
+  return (
+    <div className="newpub">
+      <form className="formularioPublicacion" onSubmit={handleSubmit}>
+        <div className="publicacion text-center pt-3"><h5>Publicar nuevo contenido:</h5><hr></hr></div>
+        <div>
+          <select className="form-control" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+            <option value="">Seleccione una categoría</option>
+            {opcionesCategoria.map((opcion) => (
+              <option key={opcion.value} value={opcion.value}>
+                {opcion.label}
+              </option>
+            ))}
+          </select>
+        </div><br/>
+        <input required value={titulo} onChange={(e) => setTitulo(e.target.value)} className="form-control" placeholder="Titulo"></input><br></br>
+        <textarea required value={contenido} onChange={(e) => setContenido(e.target.value)} className="form-control" placeholder='¿Que es?'></textarea><br></br>
+        <input required value={url} onChange={(e) => setUrl(e.target.value)} className="form-control" placeholder="Link"></input><br></br>
+        <input required value={email} hidden className="form-control" placeholder="Username"></input><br></br>
+        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button className="btn btnsubmit btn-primary me-md-2" type="submit">Publicar</button>
+        </div><br></br>
+      </form>
+    </div>
+  );
 }
 
 export default NewPublicacion;

@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Publicacion from "./Publicacion";
-import NewPublicacion from "./NewPublicacion";
-import Footer from "./Footer";
 import Appheader from "./Appheader";
 import Perfil from "./Perfil";
 import Evento from "./Evento";
-import PublicacionesFavoritos from "./PublicacionesFavoritos";
+import Editarperfil from "./Editarperfil";
+import { Link } from "react-router-dom";
 
-const Home = () => {
+const EditarPerfilView = () => {
     useEffect(() => {
     }, []);
 
@@ -17,8 +14,8 @@ const Home = () => {
             <div class="header"><Appheader/></div>
             <div class="left"><Perfil/></div>
             <div class="main">
-                <NewPublicacion/>
-                <Publicacion/></div>
+                <Editarperfil/>
+            </div>
             <div class="right">
                 <Evento/>
             </div>
@@ -26,4 +23,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default EditarPerfilView;
