@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
+import toast, { Toaster } from 'react-hot-toast';
 import album from './assets/img/album.jpg';
 import './assets/css/Register.css';
 
@@ -51,17 +52,27 @@ const Register = () => {
         e.preventDefault();
         let regobj = { nombre, apellido, email, password, ciclo, carrera };
         if (IsValidate()) {
-            //console.log(regobj);
-            fetch("http://localhost:8095/api/v1/usuario/save", {
-                method: "POST",
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify(regobj)
-            }).then((res) => {
-                toast.success('Registro exitoso.')
-                navigate('/login');
-            }).catch((err) => {
-                toast.error('Failed :' + err.message);
-            });
+            // Validación del dominio del correo electrónico
+            if (email.endsWith('@tecsup.edu.pe')) {
+                fetch("http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/usuario/save", {
+                    method: "POST",
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify(regobj)
+                }).then((res) => {
+                    toast('Registro Correcto!', {
+                        icon: '😊',
+                    });
+                    navigate('/login');
+                }).catch((err) => {
+                    toast('Error al registrarte!', {
+                        icon: '🫠',
+                    });
+                });
+            } else {
+                toast('Ingresa un correo con dominio "tecsup.edu.pe"', {
+                    icon: '🚫',
+                });
+            }
         }
     }
     return (
@@ -133,7 +144,12 @@ const Register = () => {
                                 <div className="col-lg-6 ">
                                     <div className="correo">
                                         <label><strong>Email:</strong></label>
-                                        <input required value={email} onChange={e => emailchange(e.target.value)} type="email" ></input>
+                                        <input
+                                            required
+                                            value={email}
+                                            onChange={e => emailchange(e.target.value)}
+                                            type="email"
+                                        ></input>
                                     </div>
                                 </div>
                                 <div className="col-lg-6">

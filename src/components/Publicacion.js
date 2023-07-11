@@ -1,27 +1,57 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+//import { toast } from "react-toastify";
+import toast, { Toaster } from 'react-hot-toast';
+import { format } from 'date-fns';
+//import "react-toastify/dist/ReactToastify.css";
 
 const Publicacion = () => {
     const username = sessionStorage.getItem("username");
     const navigate = useNavigate();
 
     const [publicacion, setPublicacion] = useState([]);
+    const [categoria, setCategoria] = useState("");
+
+    const opcionesCategoria = [
+        { value: "Recursos académicos", label: "Recursos académicos" },
+        { value: "Orientación vocacional y profesional", label: "Orientación vocacional y profesional" },
+        { value: "Experiencias estudiantiles", label: "Experiencias estudiantiles" },
+        { value: "Desarrollo personal", label: "Desarrollo personal" },
+        { value: "Recomendaciones", label: "Recomendaciones" },
+        { value: "Consejos de estudio", label: "Consejos de estudio" },
+        { value: "Proyectos y trabajos destacados", label: "Proyectos y trabajos destacados" },
+        { value: "Apoyo y consejos para exámenes", label: "Apoyo y consejos para exámenes" },
+        { value: "Idiomas y estudios internacionales", label: "Idiomas y estudios internacionales" },
+        // Agrega más opciones de categoría según tus necesidades
+    ];
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch('http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/publicacion');
+            const jsonData = await response.json();
+            setPublicacion(jsonData);
+        } catch (error) {
+            console.log('Error fetching data:', error);
+        }
+    };
+
+    const filtrarPublicaciones = async () => {
+        try {
+            const response = await fetch(`http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/publicacion/${categoria}`);
+            const jsonData = await response.json();
+            setPublicacion(jsonData);
+        } catch (error) {
+            console.log('Error fetching data:', error);
+        }
+    };
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch("http://localhost:8095/api/v1/publicacion");
-                const jsonData = await response.json();
-                setPublicacion(jsonData);
-            } catch (error) {
-                console.log("Error fetching data:", error);
-            }
-        };
-
-        fetchData();
-    }, []);
+        if (categoria) {
+            filtrarPublicaciones();
+        } else {
+            fetchData();
+        }
+    }, [categoria]);
 
     const handleSubmit = (e, item) => {
         e.preventDefault();
@@ -34,11 +64,10 @@ const Publicacion = () => {
         })
             .then((res) => {
                 if (res.ok) {
-                    toast.success("Añadido a favoritos", {
-                        toastStyle: { background: "#FFFFFF", color: "#721C24" },
-                        bodyClassName: "toast-body",
-                    });
-                    navigate("/");
+                    toast('Añadido a favoritos!', {
+                        icon: '😍',
+                      });
+                    navigate('/');
                 } else {
                     throw new Error("Error al publicar la publicación");
                 }
@@ -47,15 +76,27 @@ const Publicacion = () => {
                 toast.error("Error: " + err.message);
             });
     };
+    const publicacionInvertida = [...publicacion].reverse();
 
     return (
         <div className="publicaciones_contenido">
             <div className="tituloPub">
                 <h6>Publicaciones</h6>
             </div>
+            <div>
+                <h6 className="text-start">Selecciona una categoria para ver los contenidos relacions a:</h6>
+                <select className="form-control" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                    <option value="">Ver todas las publicaciones</option>
+                    {opcionesCategoria.map((opcion) => (
+                        <option key={opcion.value} value={opcion.value}>
+                            {opcion.label}
+                        </option>
+                    ))}
+                </select>
+            </div>
             {publicacion.length ? (
                 <ul>
-                    {publicacion.map((item) => (
+                    {publicacionInvertida.map((item) => (
                         <div key={item.id} className="lista_pub text-center">
                             <form onSubmit={(e) => handleSubmit(e, item)}>
                                 <div className="titulo_publicacion">
@@ -92,7 +133,7 @@ const Publicacion = () => {
                                 <div className="card-footer text-body-secondary">
                                     <div className="date">
                                         <a className="link"><h6>{item.email}</h6></a>
-                                        <h6>{item.fecha_pub}</h6>
+                                        <h6>{format(new Date(item.fecha_pub), 'dd/MM/yyyy HH:mm')}</h6>
 
                                         <input
                                             hidden

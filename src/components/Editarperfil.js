@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import Footer from "./Footer";
-import Appheader from './Appheader';
-
+import toast, { Toaster } from 'react-hot-toast';
 const Editarperfil = () => {
 
     const [usuario, setUsuario] = useState(null);
@@ -20,10 +18,10 @@ const Editarperfil = () => {
     useEffect(() => {
         const obtenerDatosUsuario = async () => {
             try {
-                const response = await fetch(`http://localhost:8095/api/v1/usuario/email/${username}`);
+                const response = await fetch(`http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/usuario/email/${username}`);
                 if (response.ok) {
                     const data = await response.json();
-                    const { nombre,apellido,ciclo,carrera,descripcion } = data;
+                    const { nombre, apellido, ciclo, carrera, descripcion } = data;
                     setNombre(nombre);
                     setApellido(apellido);
                     setCiclo(ciclo);
@@ -54,7 +52,7 @@ const Editarperfil = () => {
         };
 
         try {
-            const response = await fetch(`http://localhost:8095/api/v1/usuario/actualizar/${username}`, {
+            const response = await fetch(`http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/usuario/actualizar/${username}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -97,7 +95,7 @@ const Editarperfil = () => {
                                             <div className="form-group">
                                                 <strong>Nombre:</strong>
                                                 <input value={nombre} onChange={(e) => setNombre(e.target.value)} className="form-control"></input>
-                                            </div><br/>
+                                            </div><br />
                                         </div>
                                         <div className="col-lg-6">
                                             <div className="form-group">
@@ -126,7 +124,7 @@ const Editarperfil = () => {
                                             </div>
                                         </div>
                                         <div className="col-lg-12">
-                                        <div className="form-group">
+                                            <div className="form-group">
                                                 <label><strong>Carrera:</strong></label>
                                                 <select required className="form-select" aria-label="Default select example" value={carrera} onChange={e => setCarrera(e.target.value)}>
                                                     <option selected value="Diseño y Desarrollo de Software">Diseño y Desarrollo de Software</option>
@@ -144,7 +142,7 @@ const Editarperfil = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className=""><hr />
+                                <div className="sumit_button"><hr />
                                     <div class="d-grid gap-2 col-6 mx-auto">
                                         <button type="submit" className="btn btn-success">Actualizar</button>
                                     </div><br />

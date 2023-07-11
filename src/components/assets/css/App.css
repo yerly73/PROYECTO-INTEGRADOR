@@ -147,31 +147,38 @@ img {
   border-color: #050c30;
   border: solid;
 }
-.lista_pub .button_pf{
+
+.lista_pub .button_pf {
   background-color: rgb(255, 255, 255);
   border: none;
 }
-.publicaciones_contenido .links{
+
+.publicaciones_contenido .links {
   text-align: start;
   color: black;
 }
+
 .publicaciones_contenido .nombre {
   text-transform: capitalize;
 }
-.titulo_p{
+
+.titulo_p {
   text-transform: uppercase;
 }
+
 .contenido_publicacion {
   background-color: #e3e8e7;
   padding: 10px;
   text-align: justify;
   padding: 25px;
 }
-.button_editar{
+
+.button_editar {
   margin-left: 10px;
   border: none;
   background-color: white;
 }
+
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
@@ -184,42 +191,84 @@ img {
   height: 30px;
   margin-bottom: 10px;
 }
-.social .link{
- margin-right: 10px;
+
+.social .link {
+  margin-right: 10px;
 }
 
 .social {
   text-align: end;
 }
-.cont_perfil{
+
+.cont_perfil {
   text-align: center;
   padding: 15px;
 }
-.cont_perfil .nombre{
+
+.cont_perfil .nombre {
   text-transform: capitalize;
 }
+
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-.cont_perfil .edit{
-  background-color: #050c30;
+
+.publicaciones_contenido .edit {
+  background-color: #040e3e;
   border: none;
 }
-.cont_perfil .edit:hover{
-  background-color: #05081c;
+
+.publicaciones_contenido button:hover {
+  background-color: #050a2a;
   border: none;
 }
-.cont_perfil .edit span{
+
+.publicaciones_contenido .button_eliminar:hover {
+  background-color: #FFFFFF;
+}
+
+.publicaciones_contenido .button_editar:hover {
+  background-color: #FFFFFF;
+}
+
+.cont_perfil .edit span {
   text-decoration: none;
   color: white;
 }
-.cont_perfil .edit span:hover{
+
+.cont_perfil .edit span:hover {
   text-decoration: none;
   color: white;
   font-weight: bolder;
 }
+
 img {
   border-radius: 5px 5px 0 0;
+}
+
+div .nota_evento {
+  border-radius: 44px 5px 44px 0px;
+  margin-top: 20px;
+  border: solid;
+}
+
+.sumit_button button {
+  background-color: #040e3e;
+  border: none;
+}
+
+.sumit_button button:hover {
+  border: none;
+  background-color: #38416a;
+  font-weight: bolder;
+}
+
+.publicaciones_contenido button span {
+  text-decoration: none;
+  color: white;
+  font-weight: bolder;
+  text-decoration: none;
+
 }
 
 .container {
@@ -230,6 +279,10 @@ body {
   overflow-x: hidden;
   font-family: Sans-Serif;
   margin: 0;
+}
+
+.links .button_pf:hover {
+  background-color: #FFFFFF;
 }
 
 .menu-container {
@@ -281,6 +334,7 @@ body {
   /* and place it over the hamburger */
   -webkit-touch-callout: none;
 }
+
 .menu-container span {
   display: block;
   width: 33px;
@@ -444,7 +498,95 @@ body {
   margin-right: 8px;
 }
 
-div .links .imgevent{
+div .links .imgevent {
   margin-left: 20px;
-  
+
 }
+
+.wallet {
+  --bg-color: #ceb2fc;
+  --bg-color-light: #f0e7ff;
+  --text-color-hover: #fff;
+  --box-shadow-color: rgba(206, 178, 252, 0.48);
+}
+.card_evento {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 30px;
+  gap: 13px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.062);
+  margin-top: 10px;
+}
+
+#cookieSvg {
+  width: 50px;
+}
+
+#cookieSvg g path {
+  fill: rgb(97, 81, 81);
+}
+
+.cookieHeading {
+  font-size: 1.2em;
+  font-weight: 800;
+  color: rgb(26, 26, 26);
+}
+
+.cookieDescription {
+  text-align: center;
+  font-size: 0.7em;
+  font-weight: 600;
+  color: rgb(99, 99, 99);
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+}
+.buttonContainer .red_social {
+  width: 30px;
+  height: 30px;
+}
+
+.acceptButton {
+  width: 80px;
+  height: 30px;
+  background-color: #7b57ff;
+  transition-duration: .2s;
+  border: none;
+  color: rgb(241, 241, 241);
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 20px;
+}
+
+.declineButton {
+  width: 80px;
+  height: 30px;
+  background-color: rgb(218, 218, 218);
+  transition-duration: .2s;
+  color: rgb(46, 46, 46);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 20px;
+}
+
+.declineButton:hover {
+  background-color: #ebebeb;
+  transition-duration: .2s;
+}
+
+.acceptButton:hover {
+  background-color: #9173ff;
+  transition-duration: .2s;
+}
+

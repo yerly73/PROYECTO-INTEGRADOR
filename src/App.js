@@ -1,19 +1,23 @@
 import './components/assets/css/App.css';
+//import "react-toastify/dist/ReactToastify.css";
+//import { toast } from "react-toastify";
+import toast, { Toaster } from 'react-hot-toast';
+import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
-import { ToastContainer } from 'react-toastify';
 import Perfil from './components/Perfil';
 import PublicacionFavoritoView from './components/PublicacionFavoritoView';
 import MisPublicacionesView from './components/MisPublicacionesView';
 import EditarPerfilView from './components/EditarPerfilView';
 import EditarPublicacionView from './components/EditarPublicacionView';
 
+
 function App() {
   return (
     <div className="App">
-      <ToastContainer theme='colored' position='top-center'></ToastContainer>
+      <Toaster />
       <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home/>}></Route>
@@ -31,5 +35,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
+//import { toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
 
 const MisPublicaciones = () => {
     const [publicaciones, setPublicaciones] = useState([]);
@@ -37,14 +39,14 @@ const MisPublicaciones = () => {
     };
 
     const handleDeleteConfirm = (publicacionid) => {
-        fetch(`http://localhost:8095/api/v1/publicacion/eliminar/${publicacionid}`, {
+        fetch(`http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/publicacion/eliminar/${publicacionid}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
         })
             .then((res) => {
                 if (res.ok) {
                     toast.success('Publicación eliminada');
-                    window.location.reload();
+                    window.location.reload()
                 } else {
                     throw new Error('Error al eliminar la publicación');
                 }
@@ -53,6 +55,7 @@ const MisPublicaciones = () => {
                 toast.error('Error: ' + err.message);
             });
     };
+    const publicacionInvertida = [...publicaciones].reverse();
 
     return (
         <div className="publicaciones_contenido">
@@ -61,7 +64,7 @@ const MisPublicaciones = () => {
             </div>
             {publicaciones.length ? (
                 <ul>
-                    {publicaciones.map((publicacion) => (
+                    {publicacionInvertida.map((publicacion) => (
                         <div key={publicacion.id} className="lista_pub text-center">
                             <div className="titulo_publicacion">
                                 <h5>
@@ -79,8 +82,8 @@ const MisPublicaciones = () => {
                             </div>
                             <div className="card-footer text-body-secondary">
                                 <div className="date">
-                                    <h6>{publicacion.fecha_pub}</h6>
-                                    <h6>{publicacion.email}</h6>
+                                    <a className='link'><h6>{publicacion.email}</h6></a>
+                                    <h6>{format(new Date(publicacion.fecha_pub), 'dd/MM/yyyy HH:mm')}</h6>
                                 </div>
                             </div>
                             <hr />
@@ -96,14 +99,14 @@ const MisPublicaciones = () => {
                                     </>
                                 ) : (
                                     <>
-                                        <button className="button_eliminar" type="button" onClick={() => handleDeleteConfirmation(publicacion.publicacionid)}>
+                                        <button className="btnmp button_eliminar" type="button" onClick={() => handleDeleteConfirmation(publicacion.publicacionid)}>
                                             <img
                                                 className="imgevent"
                                                 src="https://cdn-icons-png.flaticon.com/128/2603/2603105.png"
                                                 alt="Añadir a favoritos"
                                             />
                                         </button>
-                                        <button className="button_editar" type="button">
+                                        <button className="btnmp button_editar" type="button">
                                             <Link to={`/editarpublicacion/${publicacion.publicacionid}`}>
                                                 <img
                                                     className="imgevent"

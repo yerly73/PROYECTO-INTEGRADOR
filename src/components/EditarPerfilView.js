@@ -3,7 +3,6 @@ import Appheader from "./Appheader";
 import Perfil from "./Perfil";
 import Evento from "./Evento";
 import Editarperfil from "./Editarperfil";
-import { Link } from "react-router-dom";
 
 const EditarPerfilView = () => {
     useEffect(() => {

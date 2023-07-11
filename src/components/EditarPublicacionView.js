@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Appheader from "./Appheader";
 import Perfil from "./Perfil";
 import Evento from "./Evento";
-import { toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 
 const EditarPublicacionView = () => {
@@ -30,7 +30,7 @@ const EditarPublicacionView = () => {
     useEffect(() => {
         const fetchPublicacion = async () => {
             try {
-                const response = await fetch(`http://localhost:8095/api/v1/publicacion/id/${publicacionid}`);
+                const response = await fetch(`http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/publicacion/id/${publicacionid}`);
                 const data = await response.json();
                 const { titulo, categoria, contenido, url } = data;
                 setTitulo(titulo);
@@ -57,7 +57,7 @@ const EditarPublicacionView = () => {
         };
 
         try {
-            const response = await fetch(`http://localhost:8095/api/v1/publicacion/actualizar/${publicacionid}`, {
+            const response = await fetch(`http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/publicacion/actualizar/${publicacionid}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

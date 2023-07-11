@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
+import toast, { Toaster } from 'react-hot-toast';
 
 const NewPublicacion = () => {
   const [titulo, setTitulo] = useState("");
@@ -45,18 +46,23 @@ const NewPublicacion = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (IsValidate()) {
-      const regobj = { categoria, titulo, contenido, url, email };
-      fetch("http://localhost:8095/api/v1/publicacion/save", {
+      const contenidoConSaltosDeLinea = contenido.replace(/\n/g, '\\n');
+      const regobj = { categoria, titulo, contenido: contenidoConSaltosDeLinea, url, email };
+
+      fetch("http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/publicacion/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(regobj)
       })
         .then((res) => {
           if (res.ok) {
-            toast.success('Publicado :D');
+            toast('Contenido Publicado!', {
+              icon: '😉',
+            });
             navigate('/');
+            window.location.reload()
           } else {
-            throw new Error('Error al publicar la publicación');
+            throw new Error('Error al publicar');
           }
         })
         .catch((err) => {
@@ -64,7 +70,7 @@ const NewPublicacion = () => {
         });
     }
   };
-  
+
 
   return (
     <div className="newpub">
@@ -79,10 +85,15 @@ const NewPublicacion = () => {
               </option>
             ))}
           </select>
-        </div><br/>
+        </div><br />
         <input required value={titulo} onChange={(e) => setTitulo(e.target.value)} className="form-control" placeholder="Titulo"></input><br></br>
-        <textarea required value={contenido} onChange={(e) => setContenido(e.target.value)} className="form-control" placeholder='¿Que es?'></textarea><br></br>
-        <input required value={url} onChange={(e) => setUrl(e.target.value)} className="form-control" placeholder="Link"></input><br></br>
+        <textarea
+          required
+          value={contenido}
+          onChange={(e) => setContenido(e.target.value)}
+          className="form-control"
+          placeholder="¿Qué es?"
+        ></textarea><br></br>        <input required value={url} onChange={(e) => setUrl(e.target.value)} className="form-control" placeholder="Link"></input><br></br>
         <input required value={email} hidden className="form-control" placeholder="Username"></input><br></br>
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
           <button className="btn btnsubmit btn-primary me-md-2" type="submit">Publicar</button>
