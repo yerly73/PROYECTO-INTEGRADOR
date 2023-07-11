@@ -6,41 +6,61 @@ import tecsup from './assets/img/tecsup.jpg';
 import './assets/css/Login.css';
 
 const Login = () => {
-  const [email, setEmail] = useState("van@tecsup.edu.pe");
-  const [password, setPassword] = useState("1234");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    sessionStorage.clear();
+  }, []);
+
+  const validate = () => {
+    if (!email.trim()) {
+      toast.warning('Ingresa el correo electrónico');
+      return false;
+    }
+    if (!password.trim()) {
+      toast.warning('Ingresa la contraseña');
+      return false;
+    }
+    return true;
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
+    if (!validate()) {
+      return;
+    }
+
     const loginData = {
-      email: email,
-      password: password,
+      email: email.trim(),
+      password: password.trim(),
     };
-  
+
     try {
-      const response = await fetch(
-        "http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/usuario/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(loginData),
-        }
-      );
-  
-      if (response.ok) {
-        // La solicitud se realizó con éxito
-        // Realizar las acciones necesarias con la respuesta
-  
-        toast.success('LOGin correcto');
-        navigate("/");
-      } else {
+      const response = await fetch("http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/usuario/login", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(loginData)
+      });
+
+      if (!response.ok) {
         toast.error('Credenciales inválidas');
+        return;
+      }
+
+      const data = await response.json();
+
+      if (Object.keys(data).length === 0) {
+        toast.error('Credenciales inválidas');
+      } else {
+        sessionStorage.setItem('username', email);
+        sessionStorage.setItem('jwttoken', data.jwtToken);
+        navigate('/');
       }
     } catch (error) {
-      toast.error('Credenciales inválidas',error);
+      toast.error('Fallo inicio de sesión: ' + error.message);
     }
   };
 
@@ -69,21 +89,12 @@ const Login = () => {
                 <form onSubmit={handleLogin} className="container">
                   <div className="email">
                     <label>Email:</label>
-                    <input
-                      type="email"
-                      value={email !== null ? email : ""}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Correo electrónico"
-                    />                 </div>
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                  </div>
                   <div className="password">
                     <label>Contraseña:</label>
-
-                    <input
-                      type="password"
-                      value={password !== null ? password : ""}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Contraseña"
-                    />                 </div>
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                  </div>
                   <input type="submit" value="Iniciar" />
                   <div className="registrar">
                     ¿No tienes una cuenta? <Link to="/register">Regístrate</Link>
