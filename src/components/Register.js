@@ -160,10 +160,12 @@ const Register = () => {
                                 </div>
                             </div>
                             <button type="submit" >Registrarse</button>
-                        </form>
-                        <div className="">
+                        </form><br></br>
+                        <div className="text-center">
                             <div class="d-grid gap-2 col-6 mx-auto">
-                                <a className="nav-link"><Link to={'/login'} className="btn">Regresar a Login</Link></a>
+                                <h6>
+                                    Regresar a <Link to={'/login'} className="link">Login</Link>
+                                </h6>
                             </div>
                         </div>
                     </div>

@@ -6,7 +6,7 @@ import tecsup from './assets/img/tecsup.jpg';
 import './assets/css/Login.css';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [username, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Login = () => {
   }, []);
 
   const validate = () => {
-    if (!email.trim()) {
+    if (!username.trim()) {
       toast.warning('Ingresa el correo electrónico');
       return false;
     }
@@ -34,7 +34,7 @@ const Login = () => {
     }
 
     const loginData = {
-      email: email.trim(),
+      username: username.trim(),
       password: password.trim(),
     };
 
@@ -55,7 +55,7 @@ const Login = () => {
       if (Object.keys(data).length === 0) {
         toast.error('Credenciales inválidas');
       } else {
-        sessionStorage.setItem('username', email);
+        sessionStorage.setItem('username', username);
         sessionStorage.setItem('jwttoken', data.jwtToken);
         navigate('/');
       }
@@ -89,7 +89,7 @@ const Login = () => {
                 <form onSubmit={handleLogin} className="container">
                   <div className="email">
                     <label>Email:</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input type="email" value={username} onChange={(e) => setEmail(e.target.value)} />
                   </div>
                   <div className="password">
                     <label>Contraseña:</label>
@@ -104,7 +104,9 @@ const Login = () => {
             </div>
           </div>
         </div><br />
-        <Footer />
+      </div>
+      <div className="text-center">
+      <Footer />
       </div>
     </div>
   );

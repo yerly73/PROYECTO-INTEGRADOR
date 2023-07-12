@@ -3,7 +3,7 @@ import Appheader from "./Appheader";
 import Perfil from "./Perfil";
 import Evento from "./Evento";
 import toast, { Toaster } from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate  } from 'react-router-dom';
 
 const EditarPublicacionView = () => {
     const { publicacionid } = useParams();
@@ -13,6 +13,8 @@ const EditarPublicacionView = () => {
     const [contenido, setContenido] = useState('');
     const [url, setUrl] = useState('');
     const email = sessionStorage.getItem('username');
+
+    const navigate = useNavigate();
 
     const opcionesCategoria = [
         { value: "Recursos académicos", label: "Recursos académicos" },
@@ -66,7 +68,10 @@ const EditarPublicacionView = () => {
             });
 
             if (response.ok) {
-                toast.success('Actualización correcta.');
+                toast('Actualizacion Correcta!', {
+                    icon: '😉',
+                  });
+                navigate("/mispublicaciones")
             } else {
                 toast.warning('Error al actualizar.');
             }

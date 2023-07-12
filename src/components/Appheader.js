@@ -41,7 +41,7 @@ const Appheader = () => {
                         </a>
                     </li>
                     <li>
-                        <a href="#docs">
+                        <a target="_blank" href="https://www.tecsup.edu.pe/">
                             Tecsup
                         </a>
                     </li>

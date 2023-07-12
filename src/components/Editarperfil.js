@@ -62,6 +62,7 @@ const Editarperfil = () => {
 
             if (response.ok) {
                 toast.success('Actualización correcta.');
+                navigate("/")
             } else {
                 toast.warning('Error al actualizar.');
             }
