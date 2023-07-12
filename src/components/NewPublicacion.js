@@ -49,7 +49,7 @@ const NewPublicacion = () => {
       const contenidoConSaltosDeLinea = contenido.replace(/\n/g, '\\n');
       const regobj = { categoria, titulo, contenido: contenidoConSaltosDeLinea, url, email };
 
-      fetch("http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/publicacion/save", {
+      fetch("http://tecmediateam.us-east-1.elasticbeanstalk.com/api/v1/publicacion/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(regobj)

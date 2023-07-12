@@ -32,7 +32,7 @@ const EditarPublicacionView = () => {
     useEffect(() => {
         const fetchPublicacion = async () => {
             try {
-                const response = await fetch(`http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/publicacion/id/${publicacionid}`);
+                const response = await fetch(`http://tecmediateam.us-east-1.elasticbeanstalk.com/api/v1/publicacion/id/${publicacionid}`);
                 const data = await response.json();
                 const { titulo, categoria, contenido, url } = data;
                 setTitulo(titulo);
@@ -59,7 +59,7 @@ const EditarPublicacionView = () => {
         };
 
         try {
-            const response = await fetch(`http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/publicacion/actualizar/${publicacionid}`, {
+            const response = await fetch(`http://tecmediateam.us-east-1.elasticbeanstalk.com/api/v1/publicacion/actualizar/${publicacionid}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

@@ -58,7 +58,7 @@ const Publicacion = () => {
         e.preventDefault();
         const { categoria, titulo, contenido, url, email } = item;
         const regobj = { categoria, titulo, contenido, url, email, username };
-        fetch("http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/publicacionfavorito/save", {
+        fetch("http://tecmediateam.us-east-1.elasticbeanstalk.com/api/v1/publicacionfavorito/save", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(regobj),

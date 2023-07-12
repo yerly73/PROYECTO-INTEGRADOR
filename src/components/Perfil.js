@@ -10,7 +10,7 @@ const Perfil = () => {
     useEffect(() => {
         const obtenerDatosUsuario = async () => {
             try {
-                const response = await fetch(`http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/usuario/email/${username}`);
+                const response = await fetch(`http://tecmediateam.us-east-1.elasticbeanstalk.com/api/v1/usuario/email/${username}`);
                 if (response.ok) {
                     const data = await response.json();
                     setUsuario(data);

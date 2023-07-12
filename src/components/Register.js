@@ -54,7 +54,7 @@ const Register = () => {
         if (IsValidate()) {
             // Validación del dominio del correo electrónico
             if (email.endsWith('@tecsup.edu.pe')) {
-                fetch("http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/usuario/save", {
+                fetch("http://tecmediateam.us-east-1.elasticbeanstalk.com/api/v1/usuario/save", {
                     method: "POST",
                     headers: { 'content-type': 'application/json' },
                     body: JSON.stringify(regobj)

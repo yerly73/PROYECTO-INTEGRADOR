@@ -16,7 +16,7 @@ const PublicacionFavoritos = () => {
   useEffect(() => {
     const PublicacionFavoritos = async () => {
       try {
-        const response = await fetch(`http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/publicacionfavorito/${username}`);
+        const response = await fetch(`http://tecmediateam.us-east-1.elasticbeanstalk.com/api/v1/publicacionfavorito/${username}`);
         if (response.ok) {
           const data = await response.json();
           setPublicaciones(data);
@@ -42,7 +42,7 @@ const PublicacionFavoritos = () => {
   };
 
   const handleDelete = (publicacionid) => {
-    fetch(`http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/publicacionfavorito/eliminar/${publicacionid}`, {
+    fetch(`http://tecmediateam.us-east-1.elasticbeanstalk.com/api/v1/publicacionfavorito/eliminar/${publicacionid}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     })

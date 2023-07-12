@@ -4,7 +4,7 @@ const Evento = () => {
   const [eventos, setEventos] = useState([]);
 
   useEffect(() => {
-    fetch("http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/evento")
+    fetch("http://tecmediateam.us-east-1.elasticbeanstalk.com/api/v1/evento")
       .then((response) => response.json())
       .then((data) => setEventos(data))
       .catch((error) => console.error(error));

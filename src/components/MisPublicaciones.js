@@ -13,7 +13,7 @@ const MisPublicaciones = () => {
     useEffect(() => {
         const fetchPublicaciones = async () => {
             try {
-                const response = await fetch(`http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/publicacion/email/${username}`);
+                const response = await fetch(`http://tecmediateam.us-east-1.elasticbeanstalk.com/api/v1/publicacion/email/${username}`);
                 if (response.ok) {
                     const data = await response.json();
                     setPublicaciones(data);
@@ -39,7 +39,7 @@ const MisPublicaciones = () => {
     };
 
     const handleDeleteConfirm = (publicacionid) => {
-        fetch(`http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/publicacion/eliminar/${publicacionid}`, {
+        fetch(`http://tecmediateam.us-east-1.elasticbeanstalk.com/api/v1/publicacion/eliminar/${publicacionid}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
         })

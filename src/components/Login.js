@@ -39,7 +39,7 @@ const Login = () => {
     };
 
     try {
-      const response = await fetch("http://tecmedia-g5b.us-east-1.elasticbeanstalk.com/api/v1/usuario/login", {
+      const response = await fetch("http://tecmediateam.us-east-1.elasticbeanstalk.com/api/v1/usuario/login", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(loginData)
