@@ -23,6 +23,7 @@ const Publicacion = () => {
         { value: "Apoyo y consejos para exámenes", label: "Apoyo y consejos para exámenes" },
         { value: "Idiomas y estudios internacionales", label: "Idiomas y estudios internacionales" },
         // Agrega más opciones de categoría según tus necesidades
+        //hola
     ];
 
     const fetchData = async () => {
